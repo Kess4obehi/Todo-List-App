@@ -6,8 +6,8 @@ from flask_cors import CORS
 todo_logic_bp = Blueprint('todo_logic', __name__)
 CORS(todo_logic_bp, supports_credentials=True)
 
-@todo_logic_bp.route('/dashboard', methods=["POST"])
-def dashboard():
+@todo_logic_bp.route('/create_todo', methods=["POST"])
+def create_todo_def():
     start_date = request.form.get('start_date')
     finish_date = request.form.get('finish_date')
     priority = request.form.get('priority')
@@ -22,6 +22,7 @@ def dashboard():
             "code": "200"
         }), 200
     except Exception as e:
+        logging.error(e)
         return jsonify({
             "message": "An error occured while creating the todo",
             "status": "Internal Server Error",

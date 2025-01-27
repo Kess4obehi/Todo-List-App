@@ -1,7 +1,7 @@
 # This module is all about database
 
 import sqlite3, json
-
+import logging
 #connect database (if not exists)
 def database():
     try:
@@ -19,14 +19,14 @@ def todo_table():
                 finish_date text NOT NULL,
                 priority text NOT NULL,
                 category text NOT NULL,
-                notes text NOT NULL,
-                )
-            """
+                notes text NOT NULL
+            )"""
+
     db.execute(query)
 try:
     todo_table()
 except Exception as e:
-    print('The table cannot be created due to: ' + e)
+    logging.error(f'The table cannot be created due to: {e}')
 
 #write into the todo table
 def create_todo(start_date, finish_date, priority, category, notes):
