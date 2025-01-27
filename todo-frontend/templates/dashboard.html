@@ -51,30 +51,30 @@
     <!-- Show the list of todo -->
     {% if todo %}
     {% for item in todo %}
-    <div class="border border-solid p-4 m-2">
+    <div class="border border-solid p-4 m-2 text-white flex flex-col gap-3  rounded-lg" style="background-color: #3E2723;">
     <div>
-      <label class="block text-sm text-gray-600">Start Date</label>
-      <input type="date" value="{{item['start_date']}}" class="w-full border-gray-300 rounded-lg">
+      <label class="block text-sm ">Start Date</label>
+      <input type="date" value="{{item['start_date']}}" class="w-full border-gray-300 rounded-lg bg-inherit">
     </div>
     <div>
-      <label class="block text-sm text-gray-600">Finish Date</label>
-      <input type="date" value="{{item['finish_date']}}" class="w-full border-gray-300 rounded-lg">
+      <label class="block text-sm ">Finish Date</label>
+      <input type="date" value="{{item['finish_date']}}" class="w-full border-gray-300 rounded-lg bg-inherit">
     </div>
     <div>
-      <label class="block text-sm text-gray-600">Priority</label>
-      <select class="w-full border-gray-300 rounded-lg">
+      <label class="block text-sm ">Priority</label>
+      <select class="w-full border-gray-300 rounded-lg bg-inherit">
         <option value="{{item['priority']}}">{{item['priority']}}</option>
       </select>
     </div>
     <div>
-      <label class="block text-sm text-gray-600">Category</label>
-      <select class="w-full border-gray-300 rounded-lg">
+      <label class="block text-sm ">Category</label>
+      <select class="w-full border-gray-300 rounded-lg bg-inherit">
         <option value="{{item['category']}}" >{{item['']}}</option>
       </select>
     </div>
     <div class="col-span-2">
-      <label class="block text-sm text-gray-600">Notes</label>
-      <textarea class="w-full border-gray-300 rounded-lg" rows="3">{{item['notes']}}</textarea>
+      <label class="block text-sm ">Notes</label>
+      <textarea class="w-full border-gray-300 rounded-lg bg-inherit" rows="3">{{item['notes']}}</textarea>
     </div>
   </div>
     {% endfor %}
