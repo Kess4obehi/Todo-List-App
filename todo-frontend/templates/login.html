@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ToDo list</title>
+  <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ToDo list</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/signup">Sign Up</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="login">
+      <h1>Welcome Back!</h1>
+      <form id="login-form" class="login-form" action="{{url_for('login')}}" method="POST">
+        <label for="email">Email/Username</label>
+        <input type="text" id="email" name="username_email" placeholder="Enter your email or username" required>
+
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <button type="button" id="toggle-password" aria-label="Show Password">👁️</button>
+        </div>
+
+        <!-- Flash Message -->
+         {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <p style="color: rgba(198, 137, 7, 0.518); font-weight: 700;">{{message}}</p>
+            {% endfor %}
+          {% endif %}
+         {% endwith %}
+
+        <button type="submit" class="btn">Log In</button>
+        <p><a href="#">Forgot Password?</a></p>
+        <p>Don't have an account? <a href="/signup">Sign Up here</a>.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ToDo list</p>
+  </footer>
+
+  <!-- <script src="../static/js/script.js"></script> -->
+</body>
+</html>

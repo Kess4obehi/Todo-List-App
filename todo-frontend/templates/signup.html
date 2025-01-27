@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - ToDo List</title>
+  <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">ToDo List</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/login">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="signup">
+      <h1>Create an Account</h1>
+      <form action="{{url_for('signup')}}" method="POST" class="signup-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter your password" required>
+
+        <!-- For Flash Message -->
+         <div style="color: red; font-weight: 700;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <p style="color: red; font-weight: 700;">{{message}}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+        <p>Already have an account? <a href="/login">Login here</a>.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ToDo-List</p>
+  </footer>
+</body>
+</html>
