@@ -38,3 +38,5 @@ def read_todo_list():
         "status": "success",
         "message": data
     })
+
+    
