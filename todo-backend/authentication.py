@@ -89,6 +89,8 @@ def get_session():
     }), 404
 
 
+
+
 @auth_bp.route('/logout')
 def logout():
     session.clear()
