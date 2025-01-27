@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, url_for, flash, request, jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import database, user_table, create_user, read_user
+from auth_db import database, user_table, create_user, read_user
 import logging
 from flask_cors import CORS
 
@@ -34,7 +34,7 @@ def signup():
         }), 200
     except Exception as e:
         return jsonify({
-            "message": "An error ocured while creating the user",
+            "message": "An error occured while creating the user",
             "status": "Internal Server Error",
             "code": 500
         }), 500
