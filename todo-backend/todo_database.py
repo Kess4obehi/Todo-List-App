@@ -10,45 +10,51 @@ def database():
         print('The Database cannot be connected due to: ' + e)
     return (conn)
 
-#create a user table
-def user_table():
+#create a todo table
+def todo_table():
     db = database()
-    query = """CREATE TABLE IF NOT EXISTS user(
+    query = """CREATE TABLE IF NOT EXISTS todo(
                 id integer PRIMARY KEY,
-                username text NOT NULL,
-                email text NOT NULL UNIQUE,
-                password text NOT NULL
+                start_date text NOT NULL,
+                finish_date text NOT NULL,
+                priority text NOT NULL,
+                category text NOT NULL,
+                notes text NOT NULL,
                 )
             """
     db.execute(query)
 try:
-    user_table()
+    todo_table()
 except Exception as e:
     print('The table cannot be created due to: ' + e)
 
-#write into the user table
-def create_user(username, email, password):
+#write into the todo table
+def create_todo(start_date, finish_date, priority, category, notes):
     db = database()
-    query = """INSERT INTO user(username, email, password) VALUES(?, ?, ?)"""
-    db.execute(query, (username, email, password))
+    query = """INSERT INTO todo(start_date, finish_date, priority, category, notes) VALUES(?, ?, ?, ?, ?)"""
+    db.execute(query, (start_date, finish_date, priority, category, notes))
     db.commit()
 
-def read_user():
+def read_todo():
     db = database()
-    query = """SELECT * FROM user"""
+    query = """SELECT * FROM todo"""
     query_exe = db.execute(query)
-    all_users = query_exe.fetchall()
+    all_todos = query_exe.fetchall()
 
-    user_array = []
+    todo_array = []
 
-    for user in all_users:
-        user_dic = {
-            'id': user[0],
-            'username': user[1],
-            'email': user[2],
-            'password': user[3]
+    for todo in all_todos:
+        todo_dic = {
+            'id': todo[0],
+            'start_date': todo[1],
+            'finish_date': todo[2],
+            'priority': todo[3],
+            'category': todo[4],
+            'notes': todo[5]
         }
-        user_array.append(user_dic)
+        todo_array.append(todo_dic)
     
-    return (user_array)
+    return (todo_array)
+
+
 
