@@ -53,15 +53,15 @@ function renderTodos(filter = "") {
       detailsEl.innerHTML = `
         <div>
           <label class="block text-sm text-gray-600">Start Date</label>
-          <input type="date" value="${todo.startDate}" class="w-full border-gray-300 rounded-lg">
+          <input name='start_date' type="date" value="${todo.startDate}" class="w-full border-gray-300 rounded-lg">
         </div>
         <div>
           <label class="block text-sm text-gray-600">Finish Date</label>
-          <input type="date" value="${todo.finishDate}" class="w-full border-gray-300 rounded-lg">
+          <input name='finish_date' type="date" value="${todo.finishDate}" class="w-full border-gray-300 rounded-lg">
         </div>
         <div>
           <label class="block text-sm text-gray-600">Priority</label>
-          <select class="w-full border-gray-300 rounded-lg">
+          <select name='priority' class="w-full border-gray-300 rounded-lg">
             <option value="low" ${todo.priority === "low" ? "selected" : ""}>Low</option>
             <option value="medium" ${todo.priority === "medium" ? "selected" : ""}>Medium</option>
             <option value="high" ${todo.priority === "high" ? "selected" : ""}>High</option>
@@ -69,7 +69,7 @@ function renderTodos(filter = "") {
         </div>
         <div>
           <label class="block text-sm text-gray-600">Category</label>
-          <select class="w-full border-gray-300 rounded-lg">
+          <select name='category' class="w-full border-gray-300 rounded-lg">
             <option value="work" ${todo.category === "work" ? "selected" : ""}>Work</option>
             <option value="personal" ${todo.category === "personal" ? "selected" : ""}>Personal</option>
             <option value="home" ${todo.category === "home" ? "selected" : ""}>Home</option>
@@ -77,7 +77,7 @@ function renderTodos(filter = "") {
         </div>
         <div class="col-span-2">
           <label class="block text-sm text-gray-600">Notes</label>
-          <textarea class="w-full border-gray-300 rounded-lg" rows="3">${todo.notes}</textarea>
+          <textarea name='notes' class="w-full border-gray-300 rounded-lg" rows="3">${todo.notes}</textarea>
         </div>
       `;
       taskEl.appendChild(detailsEl);
@@ -105,7 +105,7 @@ function renderTodos(filter = "") {
         input.addEventListener("input", e => {
           const key = e.target.type === "textarea" ? "notes" : e.target.type === "select-one" ? "priority" : e.target.getAttribute("value") ? e.target.value : e.target.name;
           todo[key] = e.target.value;
-          saveTodos();
+          // saveTodos();
         });
       });
     });

@@ -3,27 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional To-Do List</title>
+  <title>KessLoissy To-Do List</title>
+  <link rel="stylesheet" href="../static/css/style.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-  <div class="max-w-4xl w-full bg-white rounded-2xl shadow-lg p-6">
-    <header class="flex justify-between items-center border-b pb-4 mb-6">
-      <h1 class="text-2xl font-bold text-gray-700">To-Do List</h1>
-      <button id="create-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-        Add Task
-      </button>
-    </header>
-    <div class="mb-4">
-      <input
-        id="search-bar"
-        type="text"
-        placeholder="Search tasks..."
-        class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+<body class="bg-gray-100 min-h-screen items-center justify-center p-4">
+  <!-- Header -->
+  <header class="flex justify-between">
+    <div class="logo">
+        <h1>KessLoissy</h1>
     </div>
-    <div id="list" class="space-y-4"></div>
+    <nav>
+        <a href="/profile">Profile</a>
+        <a href="/settings">Settings</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+  <div class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-4xl w-full bg-white rounded-2xl shadow-lg p-6">
+      <div class="flex justify-between items-center border-b pb-4 mb-6">
+        <h1 class="text-2xl font-bold text-gray-700">To-Do List</h1>
+        <button id="create-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          Add Task
+        </button>
+      </div>
+      <div class="mb-4">
+        <input
+          id="search-bar"
+          type="text"
+          placeholder="Search tasks..."
+          class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <form action="{{ url_for('dashboard' ) }}" method="post">
+        <!-- Dynamic todo form -->
+        <div id="list" class="space-y-4">
+
+        </div>
+
+        <div class="flex justify-center mt-5">
+          <button  class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+            Save Task
+          </button>
+        </div>
+    </form>
+
+    <!-- Show the list of todo -->
+    {% if todo %}
+    {% for item in todo %}
+    <div class="border border-solid p-4 m-2">
+    <div>
+      <label class="block text-sm text-gray-600">Start Date</label>
+      <input type="date" value="{{item['start_date']}}" class="w-full border-gray-300 rounded-lg">
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Finish Date</label>
+      <input type="date" value="{{item['finish_date']}}" class="w-full border-gray-300 rounded-lg">
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Priority</label>
+      <select class="w-full border-gray-300 rounded-lg">
+        <option value="{{item['priority']}}">{{item['priority']}}</option>
+      </select>
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Category</label>
+      <select class="w-full border-gray-300 rounded-lg">
+        <option value="{{item['category']}}" >{{item['']}}</option>
+      </select>
+    </div>
+    <div class="col-span-2">
+      <label class="block text-sm text-gray-600">Notes</label>
+      <textarea class="w-full border-gray-300 rounded-lg" rows="3">{{item['notes']}}</textarea>
+    </div>
   </div>
+    {% endfor %}
+    {% endif %}
+    </div>
+  </div>
+
+
+  
+  
   <script src="../static/js/dashboard.js"></script>
 </body>
 </html>
