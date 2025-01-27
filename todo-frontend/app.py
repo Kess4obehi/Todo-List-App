@@ -12,6 +12,8 @@ API_URL = 'http://127.0.0.1:3000'
 def landing_page():
     return render_template('landing_page.html')
 
+
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == "POST":
